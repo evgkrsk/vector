@@ -1,0 +1,41 @@
+---
+id: todo
+title: Todo
+description: "TODO"
+author_id: TODO
+tags: ["type: guide"]
+---
+
+In this guide we'll be consuming <%= "`#{source.name}` #{event_from}s" %> and writing them to a `<%= sink.name %>` sink.
+
+<!--truncate-->
+
+## Setup
+
+If you haven't already then install Vector. TODO
+
+## Configure a Source
+
+TODO
+
+<%- if event_from != event_to -%>
+## Transform Events
+
+<%- if event_from == 'metric' -%>
+  <%- converter_type = 'metric_to_log' -%>
+<%- else -%>
+  <%- converter_type = 'log_to_metric' -%>
+<%- end -%>
+
+Next, we need to convert the <%= event_from %> events consumed from
+our `<%= source.name%>` source into <%= event_to %>s. We can
+do that with a `<%= converter_type %>` transform.
+
+<%- end -%>
+## (Optional) Add Enrichments
+
+TODO
+
+## Configure a Sink
+
+TODO
