@@ -12,9 +12,17 @@ In this guide we'll be consuming <%= "`#{source.name}` #{event_from}s" %> and wr
 
 ## Setup
 
-If you haven't already then install Vector. TODO
+If you haven't already, install Vector. Here's a script for the lazy:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.vector.dev | sh
+```
+
+Or [choose your preferred installation method][docs.installation].
 
 ## Configure a Source
+
+Next, create a config file and add a `<%= source.name %>` source.
 
 ```toml
 <%= config_example(source.options_list, path: "#{source.type.pluralize}.my-source-id", common: true) %>
@@ -24,7 +32,7 @@ If you haven't already then install Vector. TODO
 ## Transform Events
 
 <%- converter = event_converter() -%>
-Next, we need to convert the <%= event_from %> events consumed from our `<%= source.name%>` source into
+We will need to convert the <%= event_from %> events consumed from our `<%= source.name%>` source into
 <%= event_to %>s. We can do that with a `<%= converter.name %>` transform.
 
 ```toml
@@ -37,9 +45,15 @@ Next, we need to convert the <%= event_from %> events consumed from our `<%= sou
 <%- end -%>
 ## Configure a Sink
 
-Finally, we configure our sink<%- if needs_translation -%>, making sure to set the input to our converter transform<%- end -%>.
+Now we configure our sink<%- if needs_translation -%>, making sure to set the input to our converter transform<%- end -%>.
 
 <%- sink_example = with_input(sink, sink_input) -%>
 ```toml
 <%= config_example(sink_example.options_list, path: "#{sink_example.type.pluralize}.my-sink-id", common: true) %>
 ```
+
+## Deploy
+
+
+
+[docs.installation]: /docs/setup/installation/
