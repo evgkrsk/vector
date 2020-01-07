@@ -361,6 +361,10 @@ guide_sources.each do |source|
   guide_sinks.each do |sink|
     target_path = "#{ROOT_DIR}/website/guides/#{source.name}_to_#{sink.name}.md"
     template_path = "scripts/generate/templates/guides/guide.md.erb"
+    override_path = "scripts/generate/templates/guides/overrides/#{source.name}_to_#{sink.name}.md.erb"
+    if File.exists?("#{ROOT_DIR}/#{override_path}")
+      template_path = override_path
+    end
 
     guide = Guide.new(ROOT_DIR, source, sink, metadata)
     if ! (metadata.components.any? { |tform| tform.name == guide.event_converter_type })
