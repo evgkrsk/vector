@@ -295,7 +295,7 @@ end
 #
 
 class Guide < Templates
-  attr_reader :source, :sink, :metadata, :event_from, :event_to, :needs_translation
+  attr_reader :source, :sink, :metadata, :event_from, :event_to, :needs_conversion
 
   def initialize(root_dir, source, sink, metadata)
     super(root_dir, metadata)
@@ -304,11 +304,11 @@ class Guide < Templates
     @metadata = metadata
     @event_from = source.event_types[0]
     @event_to = @event_from
-    @needs_translation = false
+    @needs_conversion = false
    
     if ! (sink.event_types.include? @event_from)
       @event_to = sink.event_types[0]
-      @needs_translation = true
+      @needs_conversion = true
     end
   end
 
@@ -324,6 +324,20 @@ class Guide < Templates
     converter_type = event_converter_type
     transform = metadata.components.detect { |tform| tform.name == converter_type }
     with_input(transform, "my-source-id")
+  end
+
+  def event_enricher_type()
+    if event_to == 'metric'
+      'add_tags' # TODO: Something cooler
+    else
+      'aws_ec2_metadata'
+    end
+  end
+
+  def event_enricher()
+    converter_type = event_enricher_type
+    transform = metadata.components.detect { |tform| tform.name == converter_type }
+    transform
   end
 
   def with_input(component, input)
