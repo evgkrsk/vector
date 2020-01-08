@@ -26,6 +26,7 @@ require_relative "generate/post_processors/link_definer"
 require_relative "generate/post_processors/option_linker"
 require_relative "generate/post_processors/section_referencer"
 require_relative "generate/post_processors/section_sorter"
+require_relative "generate/templates/guide"
 require_relative "generate/templates"
 
 #
@@ -293,63 +294,6 @@ end
 #
 # Generate Guides
 #
-
-class Guide < Templates
-  attr_reader :source, :sink, :metadata, :event_from, :event_to, :needs_conversion
-
-  def initialize(root_dir, source, sink, metadata)
-    super(root_dir, metadata)
-    @source = source
-    @sink = sink
-    @metadata = metadata
-    @event_from = source.event_types[0]
-    @event_to = @event_from
-    @needs_conversion = false
-   
-    if ! (sink.event_types.include? @event_from)
-      @event_to = sink.event_types[0]
-      @needs_conversion = true
-    end
-  end
-
-  def event_converter_type()
-    if event_from == 'metric'
-      'metric_to_log'
-    else
-      'log_to_metric'
-    end
-  end
-
-  def event_converter()
-    converter_type = event_converter_type
-    transform = metadata.components.detect { |tform| tform.name == converter_type }
-    with_input(transform, "my-source-id")
-  end
-
-  def event_enricher_type()
-    if event_to == 'metric'
-      'add_tags' # TODO: Something cooler
-    else
-      'aws_ec2_metadata'
-    end
-  end
-
-  def event_enricher()
-    converter_type = event_enricher_type
-    transform = metadata.components.detect { |tform| tform.name == converter_type }
-    transform
-  end
-
-  def with_input(component, input)
-    new_component = Marshal.load( Marshal.dump(component) )
-    new_component.options_list.detect { |opt| opt.name == "inputs" }.examples[0][0] = input
-    new_component
-  end
-
-  def get_binding
-    binding
-  end
-end
 
 guide_sources = metadata.components.select do |component|
   component.type == 'source' && !([ "vector", "stdin" ].include? component.name)

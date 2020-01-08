@@ -29,11 +29,35 @@ Next, create a config file and add a `<%= source.name %>` source:
 ```toml
 <%= config_example(source.options_list, path: "#{source.type.pluralize}.my-source-id", common: true) %>
 ```
+<%- next_input = "my-source-id" -%>
 
+<%- if needs_parsing -%>
+## (Optional) Parse Events
+
+<%- parser = with_input(event_parser(), next_input) -%>
+If our logs consumed from <%= source.title %> are structured then we should
+parse them. We can do that with a range of [transforms][docs.transforms], in
+this example we will use the `<%= parser.name %>` transform:
+
+```toml
+<%= config_example(parser.options_list, path: "#{parser.type.pluralize}.parser", common: true) %>
+```
+
+<%- if next_input == "my-source-id" -%>
+Note that for the `inputs` field we specify our `<%= source.name %>` source by
+its name `my-source-id`.
+
+<%- end -%>
+This step is optional, if you choose to skip it then remember to set the
+`inputs` of the next component to the previous component in the topology
+(`<%= next_input %>`).
+
+<%- next_input = "parser" -%>
+<%- end -%>
 <%- if needs_conversion -%>
 ## Transform Events
 
-<%- converter = event_converter() -%>
+<%- converter = with_input(event_converter(), next_input) -%>
 We will need to convert the <%= event_from %> events consumed from our
 `<%= source.name%>` source into <%= event_to %>s. We can do that with a
 `<%= converter.name %>` transform:
@@ -42,39 +66,40 @@ We will need to convert the <%= event_from %> events consumed from our
 <%= config_example(converter.options_list, path: "#{converter.type.pluralize}.converter", common: true) %>
 ```
 
+<%- if next_input == "my-source-id" -%>
 Note that for the `inputs` field we specify our `<%= source.name %>` source by
 its name `my-source-id`.
 
-<%- enricher_input = "converter" -%>
-<%- else -%>
-<%- enricher_input = "my-source-id" -%>
+<%- end -%>
+<%- next_input = "converter" -%>
 <%- end -%>
 ## (Optional) Enrich Events
 
-As an optional step we're also going to add a `<%= event_enricher_type() %>`
-transform that enriches our events:
+We can also choose to enrich our events with [transforms][docs.transforms]. In
+this example we're going to add a `<%= event_enricher_type() %>` transform:
 
-<%- enricher = with_input(event_enricher(), enricher_input) -%>
+<%- enricher = with_input(event_enricher(), next_input) -%>
 ```toml
 <%= config_example(enricher.options_list, path: "#{enricher.type.pluralize}.enricher", common: true) %>
 ```
 
-<%- if needs_conversion -%>
-Note that for the `inputs` field we specify our <%= event_converter_type() %>`
-transform by its name `converter`.
-<%- else -%>
+<%- if next_input == "my-source-id" -%>
 Note that for the `inputs` field we specify our `<%= source.name %>` source by
 its name `my-source-id`.
+<%- else -%>
+Note that for the `inputs` field we specify `<%= next_input %>`.
 <%- end -%>
+
+This step is optional, if you choose to skip it then remember to set the
+`inputs` of the next component to the previous component in the topology
+(`<%= next_input %>`).
+<%- next_input = "enricher" -%>
 
 ## Configure a Sink
 
-Now we configure our sink, making sure to set the input to our enrichment
-transform. If you chose not to add an enrichment transform then instead set the
-input to <%- if needs_conversion -%>our converter transform by its name
-`converter`<%- else -%>our source by its name `my-source-id`<%- end -%>.
+Now we configure our sink, making sure to set the input to `<%= next_input %>`:
 
-<%- sink_example = with_input(sink, "enricher") -%>
+<%- sink_example = with_input(sink, next_input) -%>
 ```toml
 <%= config_example(sink_example.options_list, path: "#{sink_example.type.pluralize}.my-sink-id", common: true) %>
 ```
@@ -91,3 +116,4 @@ And choose from a range of strategies on [how to deploy it][docs.deployment].
 
 [docs.installation]: /docs/setup/installation/
 [docs.deployment]: /docs/setup/deployment/
+[docs.transforms]: /docs/reference/transforms/
