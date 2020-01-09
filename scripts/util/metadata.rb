@@ -30,7 +30,7 @@ class Metadata
   end
 
   attr_reader :blog_posts,
-  :env_vars,
+    :env_vars,
     :installation,
     :links,
     :log_fields,
@@ -38,6 +38,7 @@ class Metadata
     :options,
     :testing,
     :posts,
+    :guides,
     :releases,
     :sinks,
     :sources,
@@ -49,6 +50,7 @@ class Metadata
     @log_fields = Field.build_struct(hash["log_fields"] || {})
     @metric_fields = Field.build_struct(hash["metric_fields"] || {})
     @options = Option.build_struct(hash.fetch("options"))
+    @guides = OpenStruct.new()
     @releases = OpenStruct.new()
     @sinks = OpenStruct.new()
     @sources = OpenStruct.new()
@@ -274,7 +276,8 @@ class Metadata
       sources: sources.deep_to_h,
       team: team.deep_to_h,
       transforms: transforms.deep_to_h,
-      sinks: sinks.deep_to_h
+      sinks: sinks.deep_to_h,
+      guides: guides.deep_to_h
     }
   end
 

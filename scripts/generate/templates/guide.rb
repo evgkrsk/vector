@@ -1,10 +1,20 @@
 require_relative "../templates"
 
 class Guide < Templates
-  attr_reader :source, :sink, :metadata, :event_from, :event_to, :needs_parsing, :needs_conversion
+  attr_reader :title,
+    :description,
+    :source,
+    :sink,
+    :metadata,
+    :event_from,
+    :event_to,
+    :needs_parsing,
+    :needs_conversion
 
-  def initialize(root_dir, source, sink, metadata)
+  def initialize(root_dir, title, description, source, sink, metadata)
     super(root_dir, metadata)
+    @title = title
+    @description = description
     @source = source
     @sink = sink
     @metadata = metadata

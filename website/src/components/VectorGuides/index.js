@@ -13,7 +13,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import './styles.css';
 
 function Guide({description, featured, title, name}) {
-  let path = `/guides/${name}/`;
+  let path = `/docs/guides/${name}/`;
   return (
     <Link to={path} className="vector-component">
       <div className="vector-component--header">
@@ -22,8 +22,8 @@ function Guide({description, featured, title, name}) {
       </div>
       <div className="vector-component--badges">
         { featured ?
-          <span className="badge badge--warning" title="This guide has been generated"><i className="feather icon-alert-triangle"></i></span> :
-          <span className="badge badge--primary" title="This guide is featured"><i className="feather icon-award"></i></span>}
+          <span className="badge badge--primary" title="This guide is featured"><i className="feather icon-award"></i></span> :
+          <span className="badge badge--warning" title="This guide has been generated"><i className="feather icon-alert-triangle"></i></span> }
       </div>
     </Link>
   );
@@ -47,6 +47,19 @@ function Guides({guides}) {
   );
 }
 
+function getGuides(siteConfig) {
+  let as_array = [];
+
+  const {metadata: {guides}} = siteConfig.customFields;
+  for ( let [name, guide] of Object.entries(guides) ) {
+    guide.name = name;
+    as_array.push(guide);
+  }
+
+  as_array = as_array.sort((a, b) => (a.name > b.name) ? 1 : -1);
+  return as_array;
+}
+
 function VectorGuides(props) {
   //
   // Base Variables
@@ -56,22 +69,7 @@ function VectorGuides(props) {
   const filterColumn = props.filterColumn == true;
   const queryObj = props.location ? qs.parse(props.location.search, {ignoreQueryPrefix: true}) : {};
 
-  let guides = [];
-
-  guides.push({
-    title: "Foo",
-    name: "foo",
-    featured: false,
-    description: "this is an example guide"
-  });
-  guides.push({
-    title: "Also",
-    name: "also",
-    featured: true,
-    description: "this is an example guide"
-  });
-
-  guides = guides.sort((a, b) => (a.name > b.name) ? 1 : -1);
+  let guides = getGuides(siteConfig);
 
   //
   // State

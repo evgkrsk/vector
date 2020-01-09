@@ -1,12 +1,12 @@
 ---
 id: <%= "#{source.name}_to_#{sink.name}" %>
-title: <%= "Writing #{source.title} Events to #{sink.title}" %>
-description: <%= %"Learn how to send #{source.title} events to #{sink.title} with optional enrichments." %>
+title: <%= "#{title}" %>
+description: <%= "#{description}" %>
 author_id: TODO
 tags: ["type: guide"]
 ---
 
-# <%= "Writing #{source.title} Events to #{sink.title}" %>
+# <%= "#{title}" %>
 
 In this guide we'll be consuming <%= "`#{source.name}` #{event_from}s" %> and writing them to a `<%= sink.name %>` sink.
 
@@ -104,7 +104,7 @@ Now we configure our sink, making sure to set the input to `<%= next_input %>`:
 <%= config_example(sink_example.options_list, path: "#{sink_example.type.pluralize}.my-sink-id", common: true) %>
 ```
 
-## Run It
+## Run It
 
 That's it, we're ready to execute our pipeline. You can run it locally with:
 

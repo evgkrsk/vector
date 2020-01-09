@@ -1,4 +1,566 @@
 module.exports = {
+  "guides": {
+    "docker_to_aws_cloudwatch_logs": {
+      "title": "Writing Docker Events to AWS Cloudwatch Logs",
+      "description": "Learn how to send Docker events to AWS Cloudwatch Logs with optional enrichments.",
+      "featured": true
+    },
+    "docker_to_aws_cloudwatch_metrics": {
+      "title": "Writing Docker Events to AWS Cloudwatch Metrics",
+      "description": "Learn how to send Docker events to AWS Cloudwatch Metrics with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_aws_kinesis_firehose": {
+      "title": "Writing Docker Events to AWS Kinesis Firehose",
+      "description": "Learn how to send Docker events to AWS Kinesis Firehose with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_aws_kinesis_streams": {
+      "title": "Writing Docker Events to AWS Kinesis Data Streams",
+      "description": "Learn how to send Docker events to AWS Kinesis Data Streams with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_aws_s3": {
+      "title": "Writing Docker Events to AWS S3",
+      "description": "Learn how to send Docker events to AWS S3 with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_clickhouse": {
+      "title": "Writing Docker Events to Clickhouse",
+      "description": "Learn how to send Docker events to Clickhouse with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_datadog_metrics": {
+      "title": "Writing Docker Events to Datadog Metrics",
+      "description": "Learn how to send Docker events to Datadog Metrics with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_elasticsearch": {
+      "title": "Writing Docker Events to Elasticsearch",
+      "description": "Learn how to send Docker events to Elasticsearch with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_gcp_pubsub": {
+      "title": "Writing Docker Events to GCP PubSub",
+      "description": "Learn how to send Docker events to GCP PubSub with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_http": {
+      "title": "Writing Docker Events to HTTP",
+      "description": "Learn how to send Docker events to HTTP with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_kafka": {
+      "title": "Writing Docker Events to Kafka",
+      "description": "Learn how to send Docker events to Kafka with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_new_relic_logs": {
+      "title": "Writing Docker Events to New Relic Logs",
+      "description": "Learn how to send Docker events to New Relic Logs with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_prometheus": {
+      "title": "Writing Docker Events to Prometheus",
+      "description": "Learn how to send Docker events to Prometheus with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_socket": {
+      "title": "Writing Docker Events to Socket",
+      "description": "Learn how to send Docker events to Socket with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_splunk_hec": {
+      "title": "Writing Docker Events to Splunk HEC",
+      "description": "Learn how to send Docker events to Splunk HEC with optional enrichments.",
+      "featured": false
+    },
+    "docker_to_statsd": {
+      "title": "Writing Docker Events to Statsd",
+      "description": "Learn how to send Docker events to Statsd with optional enrichments.",
+      "featured": false
+    },
+    "file_to_aws_cloudwatch_logs": {
+      "title": "Writing File Events to AWS Cloudwatch Logs",
+      "description": "Learn how to send File events to AWS Cloudwatch Logs with optional enrichments.",
+      "featured": false
+    },
+    "file_to_aws_cloudwatch_metrics": {
+      "title": "Writing File Events to AWS Cloudwatch Metrics",
+      "description": "Learn how to send File events to AWS Cloudwatch Metrics with optional enrichments.",
+      "featured": false
+    },
+    "file_to_aws_kinesis_firehose": {
+      "title": "Writing File Events to AWS Kinesis Firehose",
+      "description": "Learn how to send File events to AWS Kinesis Firehose with optional enrichments.",
+      "featured": false
+    },
+    "file_to_aws_kinesis_streams": {
+      "title": "Writing File Events to AWS Kinesis Data Streams",
+      "description": "Learn how to send File events to AWS Kinesis Data Streams with optional enrichments.",
+      "featured": false
+    },
+    "file_to_aws_s3": {
+      "title": "Writing File Events to AWS S3",
+      "description": "Learn how to send File events to AWS S3 with optional enrichments.",
+      "featured": false
+    },
+    "file_to_clickhouse": {
+      "title": "Writing File Events to Clickhouse",
+      "description": "Learn how to send File events to Clickhouse with optional enrichments.",
+      "featured": false
+    },
+    "file_to_datadog_metrics": {
+      "title": "Writing File Events to Datadog Metrics",
+      "description": "Learn how to send File events to Datadog Metrics with optional enrichments.",
+      "featured": false
+    },
+    "file_to_elasticsearch": {
+      "title": "Writing File Events to Elasticsearch",
+      "description": "Learn how to send File events to Elasticsearch with optional enrichments.",
+      "featured": false
+    },
+    "file_to_gcp_pubsub": {
+      "title": "Writing File Events to GCP PubSub",
+      "description": "Learn how to send File events to GCP PubSub with optional enrichments.",
+      "featured": false
+    },
+    "file_to_http": {
+      "title": "Writing File Events to HTTP",
+      "description": "Learn how to send File events to HTTP with optional enrichments.",
+      "featured": false
+    },
+    "file_to_kafka": {
+      "title": "Writing File Events to Kafka",
+      "description": "Learn how to send File events to Kafka with optional enrichments.",
+      "featured": false
+    },
+    "file_to_new_relic_logs": {
+      "title": "Writing File Events to New Relic Logs",
+      "description": "Learn how to send File events to New Relic Logs with optional enrichments.",
+      "featured": false
+    },
+    "file_to_prometheus": {
+      "title": "Writing File Events to Prometheus",
+      "description": "Learn how to send File events to Prometheus with optional enrichments.",
+      "featured": false
+    },
+    "file_to_socket": {
+      "title": "Writing File Events to Socket",
+      "description": "Learn how to send File events to Socket with optional enrichments.",
+      "featured": false
+    },
+    "file_to_splunk_hec": {
+      "title": "Writing File Events to Splunk HEC",
+      "description": "Learn how to send File events to Splunk HEC with optional enrichments.",
+      "featured": false
+    },
+    "file_to_statsd": {
+      "title": "Writing File Events to Statsd",
+      "description": "Learn how to send File events to Statsd with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_aws_cloudwatch_logs": {
+      "title": "Writing Journald Events to AWS Cloudwatch Logs",
+      "description": "Learn how to send Journald events to AWS Cloudwatch Logs with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_aws_cloudwatch_metrics": {
+      "title": "Writing Journald Events to AWS Cloudwatch Metrics",
+      "description": "Learn how to send Journald events to AWS Cloudwatch Metrics with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_aws_kinesis_firehose": {
+      "title": "Writing Journald Events to AWS Kinesis Firehose",
+      "description": "Learn how to send Journald events to AWS Kinesis Firehose with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_aws_kinesis_streams": {
+      "title": "Writing Journald Events to AWS Kinesis Data Streams",
+      "description": "Learn how to send Journald events to AWS Kinesis Data Streams with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_aws_s3": {
+      "title": "Writing Journald Events to AWS S3",
+      "description": "Learn how to send Journald events to AWS S3 with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_clickhouse": {
+      "title": "Writing Journald Events to Clickhouse",
+      "description": "Learn how to send Journald events to Clickhouse with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_datadog_metrics": {
+      "title": "Writing Journald Events to Datadog Metrics",
+      "description": "Learn how to send Journald events to Datadog Metrics with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_elasticsearch": {
+      "title": "Writing Journald Events to Elasticsearch",
+      "description": "Learn how to send Journald events to Elasticsearch with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_gcp_pubsub": {
+      "title": "Writing Journald Events to GCP PubSub",
+      "description": "Learn how to send Journald events to GCP PubSub with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_http": {
+      "title": "Writing Journald Events to HTTP",
+      "description": "Learn how to send Journald events to HTTP with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_kafka": {
+      "title": "Writing Journald Events to Kafka",
+      "description": "Learn how to send Journald events to Kafka with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_new_relic_logs": {
+      "title": "Writing Journald Events to New Relic Logs",
+      "description": "Learn how to send Journald events to New Relic Logs with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_prometheus": {
+      "title": "Writing Journald Events to Prometheus",
+      "description": "Learn how to send Journald events to Prometheus with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_socket": {
+      "title": "Writing Journald Events to Socket",
+      "description": "Learn how to send Journald events to Socket with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_splunk_hec": {
+      "title": "Writing Journald Events to Splunk HEC",
+      "description": "Learn how to send Journald events to Splunk HEC with optional enrichments.",
+      "featured": false
+    },
+    "journald_to_statsd": {
+      "title": "Writing Journald Events to Statsd",
+      "description": "Learn how to send Journald events to Statsd with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_aws_cloudwatch_logs": {
+      "title": "Writing Kafka Events to AWS Cloudwatch Logs",
+      "description": "Learn how to send Kafka events to AWS Cloudwatch Logs with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_aws_cloudwatch_metrics": {
+      "title": "Writing Kafka Events to AWS Cloudwatch Metrics",
+      "description": "Learn how to send Kafka events to AWS Cloudwatch Metrics with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_aws_kinesis_firehose": {
+      "title": "Writing Kafka Events to AWS Kinesis Firehose",
+      "description": "Learn how to send Kafka events to AWS Kinesis Firehose with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_aws_kinesis_streams": {
+      "title": "Writing Kafka Events to AWS Kinesis Data Streams",
+      "description": "Learn how to send Kafka events to AWS Kinesis Data Streams with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_aws_s3": {
+      "title": "Writing Kafka Events to AWS S3",
+      "description": "Learn how to send Kafka events to AWS S3 with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_clickhouse": {
+      "title": "Writing Kafka Events to Clickhouse",
+      "description": "Learn how to send Kafka events to Clickhouse with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_datadog_metrics": {
+      "title": "Writing Kafka Events to Datadog Metrics",
+      "description": "Learn how to send Kafka events to Datadog Metrics with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_elasticsearch": {
+      "title": "Writing Kafka Events to Elasticsearch",
+      "description": "Learn how to send Kafka events to Elasticsearch with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_gcp_pubsub": {
+      "title": "Writing Kafka Events to GCP PubSub",
+      "description": "Learn how to send Kafka events to GCP PubSub with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_http": {
+      "title": "Writing Kafka Events to HTTP",
+      "description": "Learn how to send Kafka events to HTTP with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_kafka": {
+      "title": "Writing Kafka Events to Kafka",
+      "description": "Learn how to send Kafka events to Kafka with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_new_relic_logs": {
+      "title": "Writing Kafka Events to New Relic Logs",
+      "description": "Learn how to send Kafka events to New Relic Logs with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_prometheus": {
+      "title": "Writing Kafka Events to Prometheus",
+      "description": "Learn how to send Kafka events to Prometheus with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_socket": {
+      "title": "Writing Kafka Events to Socket",
+      "description": "Learn how to send Kafka events to Socket with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_splunk_hec": {
+      "title": "Writing Kafka Events to Splunk HEC",
+      "description": "Learn how to send Kafka events to Splunk HEC with optional enrichments.",
+      "featured": false
+    },
+    "kafka_to_statsd": {
+      "title": "Writing Kafka Events to Statsd",
+      "description": "Learn how to send Kafka events to Statsd with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_aws_cloudwatch_logs": {
+      "title": "Writing Socket Events to AWS Cloudwatch Logs",
+      "description": "Learn how to send Socket events to AWS Cloudwatch Logs with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_aws_cloudwatch_metrics": {
+      "title": "Writing Socket Events to AWS Cloudwatch Metrics",
+      "description": "Learn how to send Socket events to AWS Cloudwatch Metrics with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_aws_kinesis_firehose": {
+      "title": "Writing Socket Events to AWS Kinesis Firehose",
+      "description": "Learn how to send Socket events to AWS Kinesis Firehose with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_aws_kinesis_streams": {
+      "title": "Writing Socket Events to AWS Kinesis Data Streams",
+      "description": "Learn how to send Socket events to AWS Kinesis Data Streams with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_aws_s3": {
+      "title": "Writing Socket Events to AWS S3",
+      "description": "Learn how to send Socket events to AWS S3 with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_clickhouse": {
+      "title": "Writing Socket Events to Clickhouse",
+      "description": "Learn how to send Socket events to Clickhouse with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_datadog_metrics": {
+      "title": "Writing Socket Events to Datadog Metrics",
+      "description": "Learn how to send Socket events to Datadog Metrics with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_elasticsearch": {
+      "title": "Writing Socket Events to Elasticsearch",
+      "description": "Learn how to send Socket events to Elasticsearch with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_gcp_pubsub": {
+      "title": "Writing Socket Events to GCP PubSub",
+      "description": "Learn how to send Socket events to GCP PubSub with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_http": {
+      "title": "Writing Socket Events to HTTP",
+      "description": "Learn how to send Socket events to HTTP with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_kafka": {
+      "title": "Writing Socket Events to Kafka",
+      "description": "Learn how to send Socket events to Kafka with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_new_relic_logs": {
+      "title": "Writing Socket Events to New Relic Logs",
+      "description": "Learn how to send Socket events to New Relic Logs with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_prometheus": {
+      "title": "Writing Socket Events to Prometheus",
+      "description": "Learn how to send Socket events to Prometheus with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_socket": {
+      "title": "Writing Socket Events to Socket",
+      "description": "Learn how to send Socket events to Socket with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_splunk_hec": {
+      "title": "Writing Socket Events to Splunk HEC",
+      "description": "Learn how to send Socket events to Splunk HEC with optional enrichments.",
+      "featured": false
+    },
+    "socket_to_statsd": {
+      "title": "Writing Socket Events to Statsd",
+      "description": "Learn how to send Socket events to Statsd with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_aws_cloudwatch_logs": {
+      "title": "Writing Splunk HEC Events to AWS Cloudwatch Logs",
+      "description": "Learn how to send Splunk HEC events to AWS Cloudwatch Logs with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_aws_cloudwatch_metrics": {
+      "title": "Writing Splunk HEC Events to AWS Cloudwatch Metrics",
+      "description": "Learn how to send Splunk HEC events to AWS Cloudwatch Metrics with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_aws_kinesis_firehose": {
+      "title": "Writing Splunk HEC Events to AWS Kinesis Firehose",
+      "description": "Learn how to send Splunk HEC events to AWS Kinesis Firehose with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_aws_kinesis_streams": {
+      "title": "Writing Splunk HEC Events to AWS Kinesis Data Streams",
+      "description": "Learn how to send Splunk HEC events to AWS Kinesis Data Streams with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_aws_s3": {
+      "title": "Writing Splunk HEC Events to AWS S3",
+      "description": "Learn how to send Splunk HEC events to AWS S3 with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_clickhouse": {
+      "title": "Writing Splunk HEC Events to Clickhouse",
+      "description": "Learn how to send Splunk HEC events to Clickhouse with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_datadog_metrics": {
+      "title": "Writing Splunk HEC Events to Datadog Metrics",
+      "description": "Learn how to send Splunk HEC events to Datadog Metrics with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_elasticsearch": {
+      "title": "Writing Splunk HEC Events to Elasticsearch",
+      "description": "Learn how to send Splunk HEC events to Elasticsearch with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_gcp_pubsub": {
+      "title": "Writing Splunk HEC Events to GCP PubSub",
+      "description": "Learn how to send Splunk HEC events to GCP PubSub with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_http": {
+      "title": "Writing Splunk HEC Events to HTTP",
+      "description": "Learn how to send Splunk HEC events to HTTP with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_kafka": {
+      "title": "Writing Splunk HEC Events to Kafka",
+      "description": "Learn how to send Splunk HEC events to Kafka with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_new_relic_logs": {
+      "title": "Writing Splunk HEC Events to New Relic Logs",
+      "description": "Learn how to send Splunk HEC events to New Relic Logs with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_prometheus": {
+      "title": "Writing Splunk HEC Events to Prometheus",
+      "description": "Learn how to send Splunk HEC events to Prometheus with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_socket": {
+      "title": "Writing Splunk HEC Events to Socket",
+      "description": "Learn how to send Splunk HEC events to Socket with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_splunk_hec": {
+      "title": "Writing Splunk HEC Events to Splunk HEC",
+      "description": "Learn how to send Splunk HEC events to Splunk HEC with optional enrichments.",
+      "featured": false
+    },
+    "splunk_hec_to_statsd": {
+      "title": "Writing Splunk HEC Events to Statsd",
+      "description": "Learn how to send Splunk HEC events to Statsd with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_aws_cloudwatch_logs": {
+      "title": "Writing Syslog Events to AWS Cloudwatch Logs",
+      "description": "Learn how to send Syslog events to AWS Cloudwatch Logs with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_aws_cloudwatch_metrics": {
+      "title": "Writing Syslog Events to AWS Cloudwatch Metrics",
+      "description": "Learn how to send Syslog events to AWS Cloudwatch Metrics with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_aws_kinesis_firehose": {
+      "title": "Writing Syslog Events to AWS Kinesis Firehose",
+      "description": "Learn how to send Syslog events to AWS Kinesis Firehose with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_aws_kinesis_streams": {
+      "title": "Writing Syslog Events to AWS Kinesis Data Streams",
+      "description": "Learn how to send Syslog events to AWS Kinesis Data Streams with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_aws_s3": {
+      "title": "Writing Syslog Events to AWS S3",
+      "description": "Learn how to send Syslog events to AWS S3 with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_clickhouse": {
+      "title": "Writing Syslog Events to Clickhouse",
+      "description": "Learn how to send Syslog events to Clickhouse with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_datadog_metrics": {
+      "title": "Writing Syslog Events to Datadog Metrics",
+      "description": "Learn how to send Syslog events to Datadog Metrics with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_elasticsearch": {
+      "title": "Writing Syslog Events to Elasticsearch",
+      "description": "Learn how to send Syslog events to Elasticsearch with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_gcp_pubsub": {
+      "title": "Writing Syslog Events to GCP PubSub",
+      "description": "Learn how to send Syslog events to GCP PubSub with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_http": {
+      "title": "Writing Syslog Events to HTTP",
+      "description": "Learn how to send Syslog events to HTTP with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_kafka": {
+      "title": "Writing Syslog Events to Kafka",
+      "description": "Learn how to send Syslog events to Kafka with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_new_relic_logs": {
+      "title": "Writing Syslog Events to New Relic Logs",
+      "description": "Learn how to send Syslog events to New Relic Logs with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_prometheus": {
+      "title": "Writing Syslog Events to Prometheus",
+      "description": "Learn how to send Syslog events to Prometheus with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_socket": {
+      "title": "Writing Syslog Events to Socket",
+      "description": "Learn how to send Syslog events to Socket with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_splunk_hec": {
+      "title": "Writing Syslog Events to Splunk HEC",
+      "description": "Learn how to send Syslog events to Splunk HEC with optional enrichments.",
+      "featured": false
+    },
+    "syslog_to_statsd": {
+      "title": "Writing Syslog Events to Statsd",
+      "description": "Learn how to send Syslog events to Statsd with optional enrichments.",
+      "featured": false
+    }
+  },
   "installation": {
     "containers": [
       {
