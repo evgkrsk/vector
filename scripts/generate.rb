@@ -230,7 +230,7 @@ guide_sources.each do |source|
     title = "Writing #{source.title} Events to #{sink.title}"
     description = "Learn how to send #{source.title} events to #{sink.title} with optional enrichments."
 
-    target_path = "#{ROOT_DIR}/website/docs/guides/#{name}.md"
+    target_path = "#{ROOT_DIR}/website/guides/#{name}.md"
     template_path = "scripts/generate/templates/guides/guide.md.erb"
     override_path = "scripts/generate/templates/guides/overrides/#{name}.md.erb"
     if File.exists?("#{ROOT_DIR}/#{override_path}")
