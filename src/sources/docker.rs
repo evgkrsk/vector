@@ -37,11 +37,22 @@ lazy_static! {
 
 type DockerEvent = shiplift::rep::Event;
 
-#[derive(Deserialize, Serialize, Debug, Clone, Default)]
-#[serde(deny_unknown_fields)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
+#[serde(deny_unknown_fields, default)]
 pub struct DockerConfig {
     include_containers: Option<Vec<String>>,
     include_labels: Option<Vec<String>>,
+    partial_event_marker: Option<Atom>,
+}
+
+impl Default for DockerConfig {
+    fn default() -> Self {
+        Self {
+            include_containers: None,
+            include_labels: None,
+            partial_event_marker: Some(event::PARTIAL.clone()),
+        }
+    }
 }
 
 impl DockerConfig {
@@ -517,6 +528,7 @@ impl EventStreamBuilder {
 
         // Create event streamer
         let mut state = Some((self.main_send.clone(), info));
+        let partial_event_marker = self.core.config.partial_event_marker.clone();
         tokio::prelude::stream::poll_fn(move || {
             // !Hot code: from here
             if let Some(&mut (_, ref mut info)) = state.as_mut() {
@@ -524,7 +536,9 @@ impl EventStreamBuilder {
                 loop {
                     return match stream.poll() {
                         Ok(Async::Ready(Some(message))) => {
-                            if let Some(event) = info.new_event(message) {
+                            if let Some(event) =
+                                info.new_event(message, partial_event_marker.clone())
+                            {
                                 Ok(Async::Ready(Some(event)))
                             } else {
                                 continue;
@@ -664,7 +678,7 @@ impl ContainerLogInfo {
 
     /// Expects timestamp at the begining of message
     /// Expects messages to be ordered by timestamps
-    fn new_event(&mut self, message: Chunk) -> Option<Event> {
+    fn new_event(&mut self, message: Chunk, partial_event_marker: Option<Atom>) -> Option<Event> {
         let mut log_event = Event::new_empty_log().into_log();
 
         let stream = match message.stream_type {
@@ -725,9 +739,11 @@ impl ContainerLogInfo {
         {
             bytes_message.truncate(bytes_message.len() - 1);
         } else {
-            // If message doesn't contain a newline at the end, consider it a partial message.
-            // TODO: make the key configurable per docker source instance.
-            log_event.insert_implicit(event::PARTIAL.clone(), true);
+            // If message doesn't contain a newline at the end, consider it a partial event.
+            // Add a partial event marker if we're requested to do so.
+            if let Some(partial_event_marker) = partial_event_marker {
+                log_event.insert_implicit(partial_event_marker, true);
+            }
         }
 
         // Supply message
